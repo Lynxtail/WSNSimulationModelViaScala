@@ -7,9 +7,9 @@ class QueueingSystem(val id: Int, val serverCnt: Int,
 
 	var beDestroyedAt: Int = 0
 	var serviceFlag: Boolean = false
-	var demands = ArrayBuffer[Demand]()
+	var demands: ArrayBuffer[Demand] = ArrayBuffer[Demand]()
 	var lastState: Int = 0
-	var timeStates = ArrayBuffer[Double]()
+	var timeStates: ArrayBuffer[Double] = ArrayBuffer[Double]()
 
 	def calculateServiceTime(kMu: Int, mu: Double): Double = {
 		val randomNumbers = List.fill(kMu)(scala.util.Random.nextDouble())
