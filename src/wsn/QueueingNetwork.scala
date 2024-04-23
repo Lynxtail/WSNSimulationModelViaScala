@@ -1,42 +1,46 @@
+package wsn
+
 import scala.math.log
 import scala.util.Random
+import scala.util.control.Breaks
+import scala.util.control.Breaks.break
 
-class QueueingNetwork(val tMax: Int,  val L: Int, 
-                      var lambda0: Float, var theta: Array[Array[Double]],
+class QueueingNetwork(val tMax: Double,  val L: Int,
+                      var lambda0: Double, var theta: Array[Array[Double]],
                       var mu: Array[Double], var gamma: Array[Double],
-                      val tauThreshold: Float) {
+                      val tauThreshold: Double) {
 	private val initialTheta: Array[Array[Double]] = theta
-	var tNow: Int = 0
-	private var tOld: Int = 0
+	var tNow: Double = 0
+	private var tOld: Double = 0
 	private var indicator: Boolean = false
 
 	// моменты активации процессов
 	// обслуживания (_ = 1, L + 1)
 	// генерации (_ = 0)
-	private val tProcesses: Array[Int] = Array.fill(L + 1)(tMax + 1)
+	private val tProcesses: Array[Double] = Array.fill(L + 1)(tMax + 1)
 	tProcesses(0) = 0
-	initSystems()
+	private val systems: List[QueueingSystem] = initSystems()
 
 	private var servicedDemands: Int = 0
 	private var lostDemands: Int = 0
 	private var totalDemands: Int = 0
-	private var sumLifeTime: Int = 0
+	private var sumLifeTime: Double = 0
 	private var b: Array[Int] = Array.fill(L)(1)
 	private var countStates: Int = 1
-	private var tauSummarized: Int = 0
+	private var tauSummarized: Double = 0
 
-	private var tau: Int = 0
+	private var tau: Double = 0
 
-	private def initSystems(): Unit = {
-		var systems: List[QueueingSystem] = List(QueueingSystem(0, 0, 0, 0)) // источник
-		systems.head.serializationTimeStates(List(0))
+	private def initSystems(): List[QueueingSystem] = {
+		var systems: List[QueueingSystem] = List(new QueueingSystem(0, 0, 0, 0)) // источник
+//		systems.head.serializationTimeStates(List(0))
 		for (system <- 1 to L) {
-			systems :+= QueueingSystem(system, 1, mu(system - 1), gamma(system - 1))
-			systems.last.serializationTimeStates(List(0))
-			systems.last.beDestroyedAt = tNow + systems.last.destroyTime()
+			systems :+= new QueueingSystem(system, 1, mu(system - 1), gamma(system - 1))
+//			systems.last.serializationTimeStates(List(0))
+			systems.last.beDestroyedAt = tNow + systems.last.calculateDestroyTime()
 			// print(systems[-1].beDestroyedAt)
 		}
-		this.systems = systems
+		systems
 	}
 
 	private def arrivalTime(): Double = {
@@ -86,9 +90,10 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 			}
 		}
 
+		var visited: Array[Boolean] = Array.fill(L + 1)(false)
 		for (i <- 0 to L) {
 			if (!excepted.contains(i)) {
-				val visited: Array[Boolean] = Array.fill(L + 1)(false)
+				visited = Array.fill(L + 1)(false)
 				excepted.foreach(m => visited(m) = true)
 				if (!visited(i)) {
 					dfs(i, visited)
@@ -101,27 +106,30 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 
 	private def routing(i: Int, demand: Demand): Unit = {
 		val r = scala.util.Random.nextDouble()
-		var tmpSum = 0
+		var tmpSum = 0.0
 		var j = 0
-		while (j < L) {
-			if (theta(i)(j) > 0) {
-				tmpSum += theta(i)(j)
+		val innerLoop = new Breaks
+		innerLoop.breakable {
+			while (j < L) {
+				if (theta(i)(j) > 0) {
+					tmpSum += theta(i)(j)
+				}
+				if (tmpSum >= r) {
+					innerLoop.break()
+				}
+				j += 1
 			}
-			if (tmpSum >= r) {
-				break
-			}
-			j += 1
 		}
 		// println(s'\tтребование ${demand.id} переходит из $i в $j')
 
 		if (i != 0) {
 			systems(i).updateTimeStates(tNow)
-			systems(i).demands.remove(demand)
+			systems(i).demands -= demand
 			// println(s'\tтребования в $i: ${systems(i).currentDemands()}')
 		}
 		if (j != 0) {
 			systems(j).updateTimeStates(tNow)
-			systems(j).demands.append(demand)
+			systems(j).demands += demand
 			// println(s'\tтребования в $j: ${systems(j).currentDemands()}')
 		} else {
 			servicedDemands += 1
@@ -131,11 +139,11 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 
 	private def restore(): Unit = {
 		println(s"Сеть восстанавливается при \nb: ${b.mkString("(", ", ", ")")}")
-		b = List.fill(L)(1)
+		b = Array.fill(L)(1)
 		theta = initialTheta.clone()
 		for (system <- systems.drop(1)) {
 			// println(system.gamma)
-			system.beDestroyedAt = tNow + system.destroyTime()
+			system.beDestroyedAt = tNow + system.calculateDestroyTime
 		}
 	}
 
@@ -159,10 +167,10 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 
 			for (i <- 1 to L) {
 				// начало обслуживания
-				if (!systems(i).serviceFlag && systems(i).demands.length > 0) {
+				if (!systems(i).serviceFlag && systems(i).demands.nonEmpty) {
 					indicator = true
 					systems(i).serviceFlag = true
-					tProcesses(i) = tNow + systems(i).serviceTime()
+					tProcesses(i) = tNow + systems(i).calculateServiceTime
 					println(s"\tтребование ${systems(i).demands(0).id} начало обслуживаться в системе ${systems(i).id}")
 				}
 
@@ -172,7 +180,7 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 					systems(i).serviceFlag = false
 					println(s"\tтребование ${systems(i).demands(0).id} закончило обслуживаться в системе ${systems(i).id}")
 					routing(i, systems(i).demands(0))
-					tau = if servicedDemands != 0 then sumLifeTime / servicedDemands else 0
+					tau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
 					tProcesses(i) = tMax + 1
 				}
 
@@ -190,7 +198,7 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 					if (!checkMatrix()) {
 						restore()
 					}
-					val currentTau = if servicedDemands != 0 then sumLifeTime / servicedDemands else 0
+					val currentTau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
 					tauSummarized += currentTau
 					countStates += 1
 					servicedDemands = 0
@@ -200,8 +208,8 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 
 			if (tau > tauThreshold) {
 				restore()
-				val currentTau = if servicedDemands != 0 then sumLifeTime / servicedDemands else 0
-				tauSummarized += currentTau 
+				val currentTau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
+				tauSummarized += currentTau
 				countStates += 1
 				servicedDemands = 0
 				sumLifeTime = 0
@@ -221,12 +229,12 @@ class QueueingNetwork(val tMax: Int,  val L: Int,
 				// println('------\n')
 
 				tOld = tNow
-				tNow = (tProcesses :+ systems.tail.map(_.beDestroyedAt)).min
+				tNow = (tProcesses :++ systems.tail.map(_.beDestroyedAt).toArray).min
 			}
 		}
 
 		println(s"\nВсего требований: $totalDemands\nОбслужено ${totalDemands - lostDemands}, потеряно $lostDemands")
-		println(s"tau = ${if tauSummarized != 0 then tauSummarized / countStates else tau}")
+		println(s"tau = ${if (tauSummarized != 0) tauSummarized / countStates else tau}")
 		println(s"pLost = ${lostDemands / totalDemands}")
 	}
 }
