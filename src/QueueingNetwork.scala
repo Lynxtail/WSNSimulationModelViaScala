@@ -1,38 +1,33 @@
 import scala.math.log
 import scala.util.Random
 
-class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Double]], mu: Array[Double], gamma: Array[Double], tauThreshold: Float) {
-	var tMax: Int = tMax
-	var L: Int = L
-	var lambda0: Float = lambda0
-	var theta: Array[Array[Double]] = theta
-	var initialTheta: Array[Array[Double]] = theta
-	var mu: Array[Double] = mu
-	var gamma: Array[Double] = gamma
-
+class QueueingNetwork(val tMax: Int,  val L: Int, 
+                      var lambda0: Float, var theta: Array[Array[Double]],
+                      var mu: Array[Double], var gamma: Array[Double],
+                      val tauThreshold: Float) {
+	private val initialTheta: Array[Array[Double]] = theta
 	var tNow: Int = 0
-	var tOld: Int = 0
-	var indicator: Boolean = false
+	private var tOld: Int = 0
+	private var indicator: Boolean = false
 
 	// моменты активации процессов
 	// обслуживания (_ = 1, L + 1)
 	// генерации (_ = 0)
-	var tProcesses: Array[Int] = Array.fill(L + 1)(tMax + 1)
+	private val tProcesses: Array[Int] = Array.fill(L + 1)(tMax + 1)
 	tProcesses(0) = 0
 	initSystems()
 
-	var servicedDemands: Int = 0
-	var lostDemands: Int = 0
-	var totalDemands: Int = 0
-	var sumLifeTime: Int = 0
-	var b: Array[Int] = Array.fill(L)(1)
-	var countStates: Int = 1
-	var tauSummarized: Int = 0
+	private var servicedDemands: Int = 0
+	private var lostDemands: Int = 0
+	private var totalDemands: Int = 0
+	private var sumLifeTime: Int = 0
+	private var b: Array[Int] = Array.fill(L)(1)
+	private var countStates: Int = 1
+	private var tauSummarized: Int = 0
 
-	var tau: Int = 0
-	var tauThreshold: Float = tauThreshold
+	private var tau: Int = 0
 
-	def initSystems(): Unit = {
+	private def initSystems(): Unit = {
 		var systems: List[QueueingSystem] = List(QueueingSystem(0, 0, 0, 0)) // источник
 		systems.head.serializationTimeStates(List(0))
 		for (system <- 1 to L) {
@@ -44,13 +39,13 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 		this.systems = systems
 	}
 
-	def arrivalTime(): Double = {
+	private def arrivalTime(): Double = {
 		-log(Random.nextDouble()) / lambda0
 	}
 
-	def changeTheta(): Array[Array[Double]] = {
+	private def changeTheta(): Array[Array[Double]] = {
 		var oldTheta: Array[Array[Double]] = theta.map(_.clone)
-		var newTheta: Array[Array[Double]] = oldTheta.map(_.clone)
+		val newTheta: Array[Array[Double]] = oldTheta.map(_.clone)
 		for (m <- b.indices) {
 			if (b(m) == 0) {
 				for {
@@ -74,7 +69,7 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 		newTheta
 	}
 
-	def checkMatrix(): Boolean = {
+	private def checkMatrix(): Boolean = {
 		var excepted: List[Int] = List()
 		for (i <- theta.indices) {
 			if (theta(i)(i) == 1) excepted :+= i
@@ -93,7 +88,7 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 
 		for (i <- 0 to L) {
 			if (!excepted.contains(i)) {
-				var visited: Array[Boolean] = Array.fill(L + 1)(false)
+				val visited: Array[Boolean] = Array.fill(L + 1)(false)
 				excepted.foreach(m => visited(m) = true)
 				if (!visited(i)) {
 					dfs(i, visited)
@@ -104,8 +99,8 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 		visited.forall(identity)
 	}
 
-	def routing(i: Int, demand: Demand): Unit = {
-		var r = scala.util.Random.nextDouble()
+	private def routing(i: Int, demand: Demand): Unit = {
+		val r = scala.util.Random.nextDouble()
 		var tmpSum = 0
 		var j = 0
 		while (j < L) {
@@ -134,8 +129,8 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 		}
 	}
 
-	def restore(): Unit = {
-		println(s"Сеть восстанавливается при \nb: $b")
+	private def restore(): Unit = {
+		println(s"Сеть восстанавливается при \nb: ${b.mkString("(", ", ", ")")}")
 		b = List.fill(L)(1)
 		theta = initialTheta.clone()
 		for (system <- systems.drop(1)) {
@@ -146,7 +141,7 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 
 	def simulation(): Unit = {
 		var demandId = 0
-		while tNow < tMax {
+		while (tNow < tMax) {
 			println(s"$tNow")
 			// [println(s"${system.id}\n\t${system.deserializationTimeStates()}\n\t${system.demands.length}") for system <- systems]
 			indicator = false
@@ -177,8 +172,7 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 					systems(i).serviceFlag = false
 					println(s"\tтребование ${systems(i).demands(0).id} закончило обслуживаться в системе ${systems(i).id}")
 					routing(i, systems(i).demands(0))
-					tau = sumLifeTime / servicedDemands
-					if (servicedDemands != 0) 0
+					tau = if servicedDemands != 0 then sumLifeTime / servicedDemands else 0
 					tProcesses(i) = tMax + 1
 				}
 
@@ -196,8 +190,8 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 					if (!checkMatrix()) {
 						restore()
 					}
-					tauSummarized += sumLifeTime / servicedDemands
-					if (servicedDemands != 0) 0
+					val currentTau = if servicedDemands != 0 then sumLifeTime / servicedDemands else 0
+					tauSummarized += currentTau
 					countStates += 1
 					servicedDemands = 0
 					sumLifeTime = 0
@@ -206,8 +200,8 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 
 			if (tau > tauThreshold) {
 				restore()
-				tauSummarized += sumLifeTime / servicedDemands
-				if (servicedDemands != 0) 0
+				val currentTau = if servicedDemands != 0 then sumLifeTime / servicedDemands else 0
+				tauSummarized += currentTau 
 				countStates += 1
 				servicedDemands = 0
 				sumLifeTime = 0
@@ -231,8 +225,8 @@ class QueueingNetwork(tMax: Int, L: Int, lambda0: Float, theta: Array[Array[Doub
 			}
 		}
 
-			println(s"\nВсего требований: $totalDemands\nОбслужено ${totalDemands - lostDemands}, потеряно $lostDemands")
-		println(s"tau = ${tauSummarized / countStates if tauSummarized != 0 else tau}")
+		println(s"\nВсего требований: $totalDemands\nОбслужено ${totalDemands - lostDemands}, потеряно $lostDemands")
+		println(s"tau = ${if tauSummarized != 0 then tauSummarized / countStates else tau}")
 		println(s"pLost = ${lostDemands / totalDemands}")
 	}
 }
