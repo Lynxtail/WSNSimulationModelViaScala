@@ -20,7 +20,8 @@ class QueueingSystem(val id: Int, val serverCnt: Int,
 	def calculateDestroyTime(): Double = {
 		val randomNumbers = List.fill(this.kGamma)(scala.util.Random.nextDouble())
 		val product = randomNumbers.foldLeft(1.0)(_ * _)
-		-math.log(product) / this.gamma
+		if (this.gamma != 0.0) -math.log(product) / this.gamma
+		else Double.MaxValue
 	}
 
 	def currentDemands(): ArrayBuffer[Int] = {

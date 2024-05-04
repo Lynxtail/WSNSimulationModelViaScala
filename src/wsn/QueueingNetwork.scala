@@ -3,7 +3,6 @@ package wsn
 import scala.math.log
 import scala.util.Random
 import scala.util.control.Breaks
-import scala.util.control.Breaks.break
 
 class QueueingNetwork(val tMax: Double,  val L: Int,
                       var lambda0: Double, var theta: Array[Array[Double]],
@@ -45,6 +44,42 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 
 	private def arrivalTime(): Double = {
 		-log(Random.nextDouble()) / lambda0
+	}
+
+	private def getOmegaIterationGaussSeidelMethod(L: Int, theta: Array[Array[Double]]): Array[Double] = {
+		// нормирование матрицы
+		var thetaNormalized = theta
+		for (i <- thetaNormalized.indices;
+		     j <- thetaNormalized(i).indices) {
+			if (i == j){
+				thetaNormalized(i)(j) -= 1
+			}
+		}
+
+		var omega = Array.fill[Double](L + 1)(1 / (L + 1))
+		var oldOmega = Array.fill[Double](L + 1)(0)
+		oldOmega(0) = 1
+		var b = Array.fill[Double](L + 1)(0)
+		val eps = 0.0000001
+
+		var k = 1
+		while (k <= 500 && (omega.zip(oldOmega).map { case (a, b) => Math.abs(a - b) / Math.abs(b) }.max > eps)) {
+			oldOmega = omega.clone()
+			for (j <- 0 to L) {
+				if (thetaNormalized(j)(j) != 0) {
+					omega(j) = (b(j) -
+					  (thetaNormalized.slice(0, j).map(_.zip(omega.slice(0, j)).map { case (a, b) => a * b }.sum) +
+						thetaNormalized.slice(j + 1, L + 1).map(_.zip(oldOmega.slice(j + 1, L + 1)).map { case (a, b) => a * b }.sum)) / thetaNormalized(j)(j)
+				} else {
+					omega(j) = 0
+				}
+			}
+			k += 1
+		}
+
+		omega = omega.map(_ / omega.sum)
+		println(s"k = $k\nOmega: ${omega.mkString(",")}\nCheck (~1): ${omega.sum}")
+		omega
 	}
 
 	private def changeTheta(): Array[Array[Double]] = {
@@ -161,7 +196,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				demandId += 1
 				val demand = Demand(demandId, tNow)
 				totalDemands += 1
-				println(s"\tтребование $demandId поступило в сеть")
+//				println(s"\tтребование $demandId поступило в сеть")
 				routing(0, demand)
 			}
 
@@ -171,14 +206,14 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 					indicator = true
 					systems(i).serviceFlag = true
 					tProcesses(i) = tNow + systems(i).calculateServiceTime
-					println(s"\tтребование ${systems(i).demands(0).id} начало обслуживаться в системе ${systems(i).id}")
+//					println(s"\tтребование ${systems(i).demands(0).id} начало обслуживаться в системе ${systems(i).id}")
 				}
 
 				// завершение обслуживания
 				if (tProcesses(i) == tNow) {
 					indicator = true
 					systems(i).serviceFlag = false
-					println(s"\tтребование ${systems(i).demands(0).id} закончило обслуживаться в системе ${systems(i).id}")
+//					println(s"\tтребование ${systems(i).demands(0).id} закончило обслуживаться в системе ${systems(i).id}")
 					routing(i, systems(i).demands(0))
 					tau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
 					tProcesses(i) = tMax + 1
@@ -186,7 +221,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 
 				// выход из строя
 				if (systems(i).beDestroyedAt == tNow) {
-					println(s"Система $i выходит из строя")
+					println(s"\tСистема $i выходит из строя")
 					systems(i).state = false
 					lostDemands += systems(i).demands.length
 					// println(systems(i).currentDemands())
@@ -206,7 +241,8 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				}
 			}
 
-			if (tau > tauThreshold) {
+			if (tau > tauThreshold && !b.sameElements(Array.fill(L)(1))) {
+				println(s"\ttau = ${tau}, tau_ = ${tauThreshold}")
 				restore()
 				val currentTau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
 				tauSummarized += currentTau
@@ -234,7 +270,8 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		}
 
 		println(s"\nВсего требований: $totalDemands\nОбслужено ${totalDemands - lostDemands}, потеряно $lostDemands")
+		println(s"Сеть перезапускалась ${countStates} раз")
 		println(s"tau = ${if (tauSummarized != 0) tauSummarized / countStates else tau}")
-		println(s"pLost = ${lostDemands / totalDemands}")
+		println(s"pLost = ${lostDemands.toDouble / totalDemands.toDouble}")
 	}
 }
