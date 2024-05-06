@@ -1,0 +1,420 @@
+2024.05.05 20:48:30 INFO  Started: Metals version 1.3.0 in folders '/home/lynxtail/Scripts/wsnsimmodelviascala' for client Visual Studio Code 1.88.1.
+SLF4J: Class path contains multiple SLF4J providers.
+SLF4J: Found provider [scribe.slf4j.ScribeServiceProvider@7c73c0df]
+SLF4J: Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@58d64baf]
+SLF4J: See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual provider is of type [scribe.slf4j.ScribeServiceProvider@7c73c0df]
+2024.05.05 20:48:31 WARN  Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+2024.05.05 20:49:09 INFO  no build target found for /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/Main.scala. Using presentation compiler with project's scala-library version: 3.3.3
+2024.05.05 20:51:36 INFO  Shutting down server
+2024.05.05 20:51:36 INFO  shutting down Metals
+2024.05.05 20:51:36 INFO  Exiting server
+2024.05.06 13:36:01 INFO  Started: Metals version 1.3.0 in folders '/home/lynxtail/Scripts/wsnsimmodelviascala' for client Visual Studio Code 1.88.1.
+SLF4J: Class path contains multiple SLF4J providers.
+SLF4J: Found provider [scribe.slf4j.ScribeServiceProvider@3e2da86e]
+SLF4J: Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@4b2148b2]
+SLF4J: See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual provider is of type [scribe.slf4j.ScribeServiceProvider@3e2da86e]
+2024.05.06 13:36:01 WARN  Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+2024.05.06 13:36:14 INFO  no build target found for /home/lynxtail/Scripts/wsnsimmodelviascala/build.sbt. Using presentation compiler with project's scala-library version: 3.3.3
+мая 06, 2024 1:36:15 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 7
+2024.05.06 13:36:15 INFO  running '/home/lynxtail/.local/share/coursier/bin/sbt -Dbloop.export-jar-classifiers=sources bloopInstall'
+2024.05.06 13:36:15 WARN  no build target for: /home/lynxtail/Scripts/wsnsimmodelviascala/project/metals.sbt
+2024.05.06 13:36:17 INFO  [info] welcome to sbt 1.9.9 (Oracle Corporation Java 21.0.2)
+2024.05.06 13:36:20 INFO  [info] loading settings for project wsnsimmodelviascala-build-build from metals.sbt ...
+2024.05.06 13:36:20 INFO  [info] loading project definition from /home/lynxtail/Scripts/wsnsimmodelviascala/project/project
+2024.05.06 13:36:24 INFO  [info] loading settings for project wsnsimmodelviascala-build from metals.sbt ...
+2024.05.06 13:36:24 INFO  [info] loading project definition from /home/lynxtail/Scripts/wsnsimmodelviascala/project
+2024.05.06 13:36:26 INFO  [success] Generated .bloop/wsnsimmodelviascala-build.json
+2024.05.06 13:36:26 INFO  [success] Total time: 2 s, completed 6 мая 2024 г., 13:36:27
+2024.05.06 13:36:28 INFO  [info] loading settings for project wsnsimmodelviascala from build.sbt ...
+2024.05.06 13:36:28 INFO  [info] set current project to hello-world (in build file:/home/lynxtail/Scripts/wsnsimmodelviascala/)
+2024.05.06 13:36:28 INFO  [success] Generated .bloop/wsnsimmodelviascala.json
+2024.05.06 13:36:28 INFO  [success] Generated .bloop/wsnsimmodelviascala-test.json
+2024.05.06 13:36:28 INFO  [success] Total time: 1 s, completed 6 мая 2024 г., 13:36:29
+2024.05.06 13:36:29 INFO  time: ran 'sbt bloopInstall' in 14s
+2024.05.06 13:36:29 INFO  Attempting to connect to the build server...
+2024.05.06 13:36:29 INFO  Setting up current java home /usr/lib/jvm/jdk-21-oracle-x64 in /home/lynxtail/.bloop/bloop.json
+2024.05.06 13:36:36 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/lynxtail/Scripts/wsnsimmodelviascala/.metals/bsp.trace.json or /home/lynxtail/.cache/metals/bsp.trace.json
+2024.05.06 13:36:56 ERROR Timeout waiting for 'build/initialize' response
+2024.05.06 13:36:56 WARN  Retrying connection to the build server Bloop
+2024.05.06 13:36:56 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/lynxtail/Scripts/wsnsimmodelviascala/.metals/bsp.trace.json or /home/lynxtail/.cache/metals/bsp.trace.json
+2024.05.06 13:36:56 INFO  Attempting to connect to the build server...
+2024.05.06 13:36:56 INFO  tracing is disabled for protocol BSP, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/lynxtail/Scripts/wsnsimmodelviascala/project/.metals/bsp.trace.json or /home/lynxtail/.cache/metals/bsp.trace.json
+2024.05.06 13:36:58 INFO  time: Connected to build server in 28s
+2024.05.06 13:36:58 INFO  Connected to Build server: Bloop v1.5.17
+2024.05.06 13:36:58 INFO  time: Imported build in 0.15s
+2024.05.06 13:37:08 INFO  time: indexed workspace in 10s
+2024.05.06 13:38:25 INFO  compiling wsnsimmodelviascala (1 scala source)
+2024.05.06 13:38:28 INFO  time: compiled wsnsimmodelviascala in 3.05s
+2024.05.06 13:38:31 INFO  time: code lens generation in 3.08s
+2024.05.06 13:39:18 INFO  tracing is disabled for protocol dap-server, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/lynxtail/Scripts/wsnsimmodelviascala/.metals/dap-server.trace.json or /home/lynxtail/.cache/metals/dap-server.trace.json
+2024.05.06 13:39:18 INFO  tracing is disabled for protocol dap-client, to enable tracing of incoming and outgoing JSON messages create an empty file at /home/lynxtail/Scripts/wsnsimmodelviascala/.metals/dap-client.trace.json or /home/lynxtail/.cache/metals/dap-client.trace.json
+2024.05.06 13:39:18 INFO  Starting debug proxy for [Main]
+2024.05.06 13:39:19 INFO  Loaded expression compiler in 620 milliseconds
+2024.05.06 13:39:21 INFO  Loaded all sources and classes in 2 seconds
+2024.05.06 13:39:21 INFO  Trying to attach to remote debuggee VM localhost:55723 .
+2024.05.06 13:39:21 INFO  Attaching to debuggee VM succeeded.
+2024.05.06 13:39:22 INFO  Canceling debug proxy for [Main]
+2024.05.06 13:39:21 INFO  Closing debug server tcp://0.0.0.0:46543
+2024.05.06 13:40:22 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 13:40:22 INFO  time: compiled wsnsimmodelviascala in 0.38s
+2024.05.06 13:40:46 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 13:40:46 WARN  Invalid text document uri received from build server: file:///home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala
+2024.05.06 13:40:47 WARN  failed to generate semanticdb for /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/Main.scala:
+java.nio.file.NoSuchFileException: /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/Main.scala
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3268)
+	at scala.meta.internal.io.PlatformFileIO$.slurp(PlatformFileIO.scala:45)
+	at scala.meta.internal.io.FileIO$.slurp(FileIO.scala:24)
+	at scala.meta.inputs.Input$File.chars$lzycompute(Input.scala:52)
+	at scala.meta.inputs.Input$File.chars(Input.scala:52)
+	at scala.meta.internal.tokenizers.CharArrayReader.<init>(CharArrayReader.scala:26)
+	at scala.meta.internal.tokenizers.LegacyScanner.<init>(LegacyScanner.scala:20)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:21)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:16)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:16)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:331)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.parsers.ScannerTokens$.apply(ScannerTokens.scala:994)
+	at scala.meta.internal.parsers.ScalametaParser.<init>(ScalametaParser.scala:33)
+	at scala.meta.parsers.Parse$$anon$1.apply(Parse.scala:35)
+	at scala.meta.parsers.Api$XtensionParseDialectInput.parse(Api.scala:25)
+	at scala.meta.internal.semanticdb.scalac.ParseOps$XtensionCompilationUnitSource.toSource(ParseOps.scala:17)
+	at scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:206)
+	at scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:54)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.saveSemanticdbForCompilationUnit(SemanticdbPipeline.scala:59)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.apply(SemanticdbPipeline.scala:65)
+	at scala.tools.nsc.Global$GlobalPhase.applyPhase(Global.scala:480)
+	at scala.tools.nsc.Global$GlobalPhase.run(Global.scala:427)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.run(SemanticdbPipeline.scala:75)
+	at scala.tools.nsc.Global$Run.compileUnitsInternal(Global.scala:1546)
+	at scala.tools.nsc.Global$Run.compileUnits(Global.scala:1530)
+	at scala.tools.nsc.Global$Run.compileSources(Global.scala:1522)
+	at scala.tools.nsc.Global$Run.compileFiles(Global.scala:1635)
+	at scala.tools.xsbt.CachedCompiler0.run(CompilerBridge.scala:176)
+	at scala.tools.xsbt.CachedCompiler0.run(CompilerBridge.scala:139)
+	at scala.tools.xsbt.CompilerBridge.run(CompilerBridge.scala:43)
+	at sbt.internal.inc.AnalyzingCompiler.compile(AnalyzingCompiler.scala:91)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.compileSources$1(BloopHighLevelCompiler.scala:133)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$7(BloopHighLevelCompiler.scala:159)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$1(BloopHighLevelCompiler.scala:71)
+	at bloop.tracing.NoopTracer$.trace(BraveTracer.scala:53)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.timed$1(BloopHighLevelCompiler.scala:70)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$6(BloopHighLevelCompiler.scala:159)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at monix.eval.internal.TaskRunLoop$.startFull(TaskRunLoop.scala:81)
+	at monix.eval.internal.TaskRestartCallback.syncOnSuccess(TaskRestartCallback.scala:101)
+	at monix.eval.internal.TaskRestartCallback.onSuccess(TaskRestartCallback.scala:74)
+	at monix.eval.internal.TaskExecuteOn$AsyncRegister$$anon$1.run(TaskExecuteOn.scala:71)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+2024.05.06 13:40:47 WARN  failed to generate semanticdb for /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala:
+java.nio.file.NoSuchFileException: /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3268)
+	at scala.meta.internal.io.PlatformFileIO$.slurp(PlatformFileIO.scala:45)
+	at scala.meta.internal.io.FileIO$.slurp(FileIO.scala:24)
+	at scala.meta.inputs.Input$File.chars$lzycompute(Input.scala:52)
+	at scala.meta.inputs.Input$File.chars(Input.scala:52)
+	at scala.meta.internal.tokenizers.CharArrayReader.<init>(CharArrayReader.scala:26)
+	at scala.meta.internal.tokenizers.LegacyScanner.<init>(LegacyScanner.scala:20)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:21)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:16)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:16)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:331)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.parsers.ScannerTokens$.apply(ScannerTokens.scala:994)
+	at scala.meta.internal.parsers.ScalametaParser.<init>(ScalametaParser.scala:33)
+	at scala.meta.parsers.Parse$$anon$1.apply(Parse.scala:35)
+	at scala.meta.parsers.Api$XtensionParseDialectInput.parse(Api.scala:25)
+	at scala.meta.internal.semanticdb.scalac.ParseOps$XtensionCompilationUnitSource.toSource(ParseOps.scala:17)
+	at scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:206)
+	at scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:54)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.saveSemanticdbForCompilationUnit(SemanticdbPipeline.scala:59)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.apply(SemanticdbPipeline.scala:65)
+	at scala.tools.nsc.Global$GlobalPhase.applyPhase(Global.scala:480)
+	at scala.tools.nsc.Global$GlobalPhase.run(Global.scala:427)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.run(SemanticdbPipeline.scala:75)
+	at scala.tools.nsc.Global$Run.compileUnitsInternal(Global.scala:1546)
+	at scala.tools.nsc.Global$Run.compileUnits(Global.scala:1530)
+	at scala.tools.nsc.Global$Run.compileSources(Global.scala:1522)
+	at scala.tools.nsc.Global$Run.compileFiles(Global.scala:1635)
+	at scala.tools.xsbt.CachedCompiler0.run(CompilerBridge.scala:176)
+	at scala.tools.xsbt.CachedCompiler0.run(CompilerBridge.scala:139)
+	at scala.tools.xsbt.CompilerBridge.run(CompilerBridge.scala:43)
+	at sbt.internal.inc.AnalyzingCompiler.compile(AnalyzingCompiler.scala:91)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.compileSources$1(BloopHighLevelCompiler.scala:133)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$7(BloopHighLevelCompiler.scala:159)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$1(BloopHighLevelCompiler.scala:71)
+	at bloop.tracing.NoopTracer$.trace(BraveTracer.scala:53)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.timed$1(BloopHighLevelCompiler.scala:70)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$6(BloopHighLevelCompiler.scala:159)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at monix.eval.internal.TaskRunLoop$.startFull(TaskRunLoop.scala:81)
+	at monix.eval.internal.TaskRestartCallback.syncOnSuccess(TaskRestartCallback.scala:101)
+	at monix.eval.internal.TaskRestartCallback.onSuccess(TaskRestartCallback.scala:74)
+	at monix.eval.internal.TaskExecuteOn$AsyncRegister$$anon$1.run(TaskExecuteOn.scala:71)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+2024.05.06 13:40:47 WARN  failed to generate semanticdb for /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingSystem.scala:
+java.nio.file.NoSuchFileException: /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingSystem.scala
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3268)
+	at scala.meta.internal.io.PlatformFileIO$.slurp(PlatformFileIO.scala:45)
+	at scala.meta.internal.io.FileIO$.slurp(FileIO.scala:24)
+	at scala.meta.inputs.Input$File.chars$lzycompute(Input.scala:52)
+	at scala.meta.inputs.Input$File.chars(Input.scala:52)
+	at scala.meta.internal.tokenizers.CharArrayReader.<init>(CharArrayReader.scala:26)
+	at scala.meta.internal.tokenizers.LegacyScanner.<init>(LegacyScanner.scala:20)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.uncachedTokenize(ScalametaTokenizer.scala:21)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.$anonfun$tokenize$1(ScalametaTokenizer.scala:16)
+	at scala.collection.concurrent.TrieMap.getOrElseUpdate(TrieMap.scala:962)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer.tokenize(ScalametaTokenizer.scala:16)
+	at scala.meta.internal.tokenizers.ScalametaTokenizer$$anon$2.apply(ScalametaTokenizer.scala:331)
+	at scala.meta.tokenizers.Api$XtensionTokenizeDialectInput.tokenize(Api.scala:25)
+	at scala.meta.tokenizers.Api$XtensionTokenizeInputLike.tokenize(Api.scala:14)
+	at scala.meta.internal.parsers.ScannerTokens$.apply(ScannerTokens.scala:994)
+	at scala.meta.internal.parsers.ScalametaParser.<init>(ScalametaParser.scala:33)
+	at scala.meta.parsers.Parse$$anon$1.apply(Parse.scala:35)
+	at scala.meta.parsers.Api$XtensionParseDialectInput.parse(Api.scala:25)
+	at scala.meta.internal.semanticdb.scalac.ParseOps$XtensionCompilationUnitSource.toSource(ParseOps.scala:17)
+	at scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:206)
+	at scala.meta.internal.semanticdb.scalac.TextDocumentOps$XtensionCompilationUnitDocument.toTextDocument(TextDocumentOps.scala:54)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.saveSemanticdbForCompilationUnit(SemanticdbPipeline.scala:59)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.apply(SemanticdbPipeline.scala:65)
+	at scala.tools.nsc.Global$GlobalPhase.applyPhase(Global.scala:480)
+	at scala.tools.nsc.Global$GlobalPhase.run(Global.scala:427)
+	at scala.meta.internal.semanticdb.scalac.SemanticdbPipeline$SemanticdbTyperComponent$ComputeSemanticdbPhase.run(SemanticdbPipeline.scala:75)
+	at scala.tools.nsc.Global$Run.compileUnitsInternal(Global.scala:1546)
+	at scala.tools.nsc.Global$Run.compileUnits(Global.scala:1530)
+	at scala.tools.nsc.Global$Run.compileSources(Global.scala:1522)
+	at scala.tools.nsc.Global$Run.compileFiles(Global.scala:1635)
+	at scala.tools.xsbt.CachedCompiler0.run(CompilerBridge.scala:176)
+	at scala.tools.xsbt.CachedCompiler0.run(CompilerBridge.scala:139)
+	at scala.tools.xsbt.CompilerBridge.run(CompilerBridge.scala:43)
+	at sbt.internal.inc.AnalyzingCompiler.compile(AnalyzingCompiler.scala:91)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.compileSources$1(BloopHighLevelCompiler.scala:133)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$7(BloopHighLevelCompiler.scala:159)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$1(BloopHighLevelCompiler.scala:71)
+	at bloop.tracing.NoopTracer$.trace(BraveTracer.scala:53)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.timed$1(BloopHighLevelCompiler.scala:70)
+	at sbt.internal.inc.bloop.internal.BloopHighLevelCompiler.$anonfun$compile$6(BloopHighLevelCompiler.scala:159)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+	at monix.eval.internal.TaskRunLoop$.startFull(TaskRunLoop.scala:81)
+	at monix.eval.internal.TaskRestartCallback.syncOnSuccess(TaskRestartCallback.scala:101)
+	at monix.eval.internal.TaskRestartCallback.onSuccess(TaskRestartCallback.scala:74)
+	at monix.eval.internal.TaskExecuteOn$AsyncRegister$$anon$1.run(TaskExecuteOn.scala:71)
+	at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1423)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+2024.05.06 13:40:48 WARN  Invalid text document uri received from build server: file:///home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala
+2024.05.06 13:40:48 INFO  time: compiled wsnsimmodelviascala in 2.02s
+2024.05.06 13:40:48 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 13:40:48 INFO  time: compiled wsnsimmodelviascala in 0.11s
+2024.05.06 13:41:47 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 13:41:47 INFO  time: compiled wsnsimmodelviascala in 0.16s
+мая 06, 2024 1:42:18 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: scala.meta.internal.metals.debug.DebugProvider$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+java.util.concurrent.CompletionException: scala.meta.internal.metals.debug.DebugProvider$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:332)
+	at java.base/java.util.concurrent.CompletableFuture.uniAcceptNow(CompletableFuture.java:747)
+	at java.base/java.util.concurrent.CompletableFuture.uniAcceptStage(CompletableFuture.java:735)
+	at java.base/java.util.concurrent.CompletableFuture.thenAcceptAsync(CompletableFuture.java:2218)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.thenAccept(FutureConvertersImpl.scala:37)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:279)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:190)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: scala.meta.internal.metals.debug.DebugProvider$WorkspaceErrorsException$: Cannot run class, since the workspace has errors.
+	at scala.meta.internal.metals.debug.DebugProvider$WorkspaceErrorsException$.<clinit>(DebugProvider.scala:1024)
+	at scala.meta.internal.metals.debug.DebugProvider.debugDiscovery(DebugProvider.scala:586)
+	at scala.meta.internal.metals.debug.DebugProvider.runCommandDiscovery(DebugProvider.scala:522)
+	at scala.meta.internal.metals.MetalsLspService.discoverMainClasses(MetalsLspService.scala:1825)
+	at scala.meta.internal.metals.WorkspaceLspService.executeCommand(WorkspaceLspService.scala:731)
+	at scala.meta.metals.lsp.DelegatingScalaService.executeCommand(DelegatingScalaService.scala:169)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.request(GenericEndpoint.java:120)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleRequest(RemoteEndpoint.java:261)
+	... 9 more
+
+мая 06, 2024 1:44:11 PM scala.meta.internal.mtags.SymbolIndexBucket addMtagsSourceFile
+WARNING: Error indexing /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala
+java.nio.file.NoSuchFileException: /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3268)
+	at scala.meta.internal.io.PlatformFileIO$.slurp(PlatformFileIO.scala:45)
+	at scala.meta.internal.io.FileIO$.slurp(FileIO.scala:24)
+	at scala.meta.internal.mtags.ScalametaCommonEnrichments$XtensionAbsolutePath.toInput(ScalametaCommonEnrichments.scala:410)
+	at scala.meta.internal.mtags.Mtags.index(Mtags.scala:96)
+	at scala.meta.internal.mtags.Mtags.allSymbols(Mtags.scala:21)
+	at scala.meta.internal.mtags.SymbolIndexBucket.allSymbols(SymbolIndexBucket.scala:279)
+	at scala.meta.internal.mtags.SymbolIndexBucket.addMtagsSourceFile(SymbolIndexBucket.scala:290)
+	at scala.meta.internal.mtags.SymbolIndexBucket.$anonfun$query0$1(SymbolIndexBucket.scala:205)
+	at scala.meta.internal.mtags.SymbolIndexBucket.$anonfun$query0$1$adapted(SymbolIndexBucket.scala:205)
+	at scala.collection.immutable.Set$Set2.foreach(Set.scala:210)
+	at scala.meta.internal.mtags.SymbolIndexBucket.query0(SymbolIndexBucket.scala:205)
+	at scala.meta.internal.mtags.SymbolIndexBucket.query(SymbolIndexBucket.scala:178)
+	at scala.meta.internal.mtags.OnDemandSymbolIndex.$anonfun$findSymbolDefinition$1(OnDemandSymbolIndex.scala:159)
+	at scala.collection.immutable.List.flatMap(List.scala:294)
+	at scala.meta.internal.mtags.OnDemandSymbolIndex.findSymbolDefinition(OnDemandSymbolIndex.scala:159)
+	at scala.meta.internal.mtags.OnDemandSymbolIndex.definition(OnDemandSymbolIndex.scala:48)
+	at scala.meta.internal.metals.Docstrings.indexSymbol(Docstrings.scala:118)
+	at scala.meta.internal.metals.Docstrings.documentation(Docstrings.scala:44)
+	at scala.meta.internal.metals.MetalsSymbolSearch.documentation(MetalsSymbolSearch.scala:43)
+	at scala.meta.internal.pc.MetalsGlobal.symbolDocumentation(MetalsGlobal.scala:234)
+	at scala.meta.internal.pc.Signatures$SignaturePrinter.<init>(Signatures.scala:295)
+	at scala.meta.internal.pc.HoverProvider.toHover(HoverProvider.scala:266)
+	at scala.meta.internal.pc.HoverProvider.hoverOffset(HoverProvider.scala:104)
+	at scala.meta.internal.pc.HoverProvider.hover(HoverProvider.scala:22)
+	at scala.meta.internal.pc.ScalaPresentationCompiler.$anonfun$hover$1(ScalaPresentationCompiler.scala:342)
+	at scala.meta.internal.pc.CompilerAccess.withSharedCompiler(CompilerAccess.scala:156)
+	at scala.meta.internal.pc.CompilerAccess.$anonfun$withNonInterruptableCompiler$1(CompilerAccess.scala:142)
+	at scala.meta.internal.pc.CompilerAccess.$anonfun$onCompilerJobQueue$1(CompilerAccess.scala:245)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:152)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+мая 06, 2024 1:44:11 PM scala.meta.internal.mtags.SymbolIndexBucket addMtagsSourceFile
+WARNING: Error indexing /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala
+java.nio.file.NoSuchFileException: /home/lynxtail/Scripts/wsnsimmodelviascala/src/main/scala/QueueingNetwork.scala
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:379)
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:431)
+	at java.base/java.nio.file.Files.readAllBytes(Files.java:3268)
+	at scala.meta.internal.io.PlatformFileIO$.slurp(PlatformFileIO.scala:45)
+	at scala.meta.internal.io.FileIO$.slurp(FileIO.scala:24)
+	at scala.meta.internal.mtags.ScalametaCommonEnrichments$XtensionAbsolutePath.toInput(ScalametaCommonEnrichments.scala:410)
+	at scala.meta.internal.mtags.Mtags.index(Mtags.scala:96)
+	at scala.meta.internal.mtags.Mtags.allSymbols(Mtags.scala:21)
+	at scala.meta.internal.mtags.SymbolIndexBucket.allSymbols(SymbolIndexBucket.scala:279)
+	at scala.meta.internal.mtags.SymbolIndexBucket.addMtagsSourceFile(SymbolIndexBucket.scala:290)
+	at scala.meta.internal.mtags.SymbolIndexBucket.addMtagsSourceFile(SymbolIndexBucket.scala:301)
+	at scala.meta.internal.mtags.SymbolIndexBucket.$anonfun$query0$1(SymbolIndexBucket.scala:205)
+	at scala.meta.internal.mtags.SymbolIndexBucket.$anonfun$query0$1$adapted(SymbolIndexBucket.scala:205)
+	at scala.collection.immutable.Set$Set2.foreach(Set.scala:210)
+	at scala.meta.internal.mtags.SymbolIndexBucket.query0(SymbolIndexBucket.scala:205)
+	at scala.meta.internal.mtags.SymbolIndexBucket.query(SymbolIndexBucket.scala:178)
+	at scala.meta.internal.mtags.OnDemandSymbolIndex.$anonfun$findSymbolDefinition$1(OnDemandSymbolIndex.scala:159)
+	at scala.collection.immutable.List.flatMap(List.scala:294)
+	at scala.meta.internal.mtags.OnDemandSymbolIndex.findSymbolDefinition(OnDemandSymbolIndex.scala:159)
+	at scala.meta.internal.mtags.OnDemandSymbolIndex.definition(OnDemandSymbolIndex.scala:48)
+	at scala.meta.internal.metals.Docstrings.indexSymbol(Docstrings.scala:118)
+	at scala.meta.internal.metals.Docstrings.documentation(Docstrings.scala:44)
+	at scala.meta.internal.metals.MetalsSymbolSearch.documentation(MetalsSymbolSearch.scala:43)
+	at scala.meta.internal.pc.MetalsGlobal.symbolDocumentation(MetalsGlobal.scala:234)
+	at scala.meta.internal.pc.Signatures$SignaturePrinter.<init>(Signatures.scala:295)
+	at scala.meta.internal.pc.HoverProvider.toHover(HoverProvider.scala:266)
+	at scala.meta.internal.pc.HoverProvider.hoverOffset(HoverProvider.scala:104)
+	at scala.meta.internal.pc.HoverProvider.hover(HoverProvider.scala:22)
+	at scala.meta.internal.pc.ScalaPresentationCompiler.$anonfun$hover$1(ScalaPresentationCompiler.scala:342)
+	at scala.meta.internal.pc.CompilerAccess.withSharedCompiler(CompilerAccess.scala:156)
+	at scala.meta.internal.pc.CompilerAccess.$anonfun$withNonInterruptableCompiler$1(CompilerAccess.scala:142)
+	at scala.meta.internal.pc.CompilerAccess.$anonfun$onCompilerJobQueue$1(CompilerAccess.scala:245)
+	at scala.meta.internal.pc.CompilerJobQueue$Job.run(CompilerJobQueue.scala:152)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+мая 06, 2024 1:44:15 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 416
+2024.05.06 13:47:42 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 13:47:42 INFO  time: compiled wsnsimmodelviascala in 0.14s
+мая 06, 2024 1:51:22 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.05.06 14:05:22 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 14:05:24 INFO  time: compiled wsnsimmodelviascala in 1.59s
+мая 06, 2024 2:07:07 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1877
+мая 06, 2024 2:07:47 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1968
+мая 06, 2024 2:08:48 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2186
+2024.05.06 14:11:16 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 14:11:16 INFO  time: compiled wsnsimmodelviascala in 0.86s
+2024.05.06 14:11:41 INFO  compiling wsnsimmodelviascala (4 scala sources)
+2024.05.06 14:11:45 WARN  2 deprecations (since 2.13.3); re-run with -deprecation for details
+2024.05.06 14:11:45 INFO  time: compiled wsnsimmodelviascala in 3.73s
+2024.05.06 14:13:25 INFO  compiling wsnsimmodelviascala (1 scala source)
+2024.05.06 14:13:28 WARN  2 deprecations (since 2.13.3); re-run with -deprecation for details
+2024.05.06 14:13:28 INFO  time: compiled wsnsimmodelviascala in 2.96s
+2024.05.06 14:16:27 INFO  compiling wsnsimmodelviascala (1 scala source)
+мая 06, 2024 2:16:28 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3376
+2024.05.06 14:16:29 WARN  2 deprecations (since 2.13.3); re-run with -deprecation for details
+2024.05.06 14:16:29 INFO  time: compiled wsnsimmodelviascala in 2.21s
+2024.05.06 14:16:46 INFO  compiling wsnsimmodelviascala (1 scala source)
+2024.05.06 14:16:46 INFO  time: compiled wsnsimmodelviascala in 0.26s
+2024.05.06 14:17:43 INFO  compiling wsnsimmodelviascala (1 scala source)
+2024.05.06 14:17:43 INFO  time: compiled wsnsimmodelviascala in 0.98s
+2024.05.06 15:09:43 INFO  compiling wsnsimmodelviascala (1 scala source)
+2024.05.06 15:09:47 WARN  2 deprecations (since 2.13.3); re-run with -deprecation for details
+2024.05.06 15:09:47 INFO  time: compiled wsnsimmodelviascala in 4.52s
+мая 06, 2024 3:13:11 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 3706
+2024.05.06 15:15:02 INFO  compiling wsnsimmodelviascala (1 scala source)
+2024.05.06 15:15:03 INFO  time: compiled wsnsimmodelviascala in 1.45s
+мая 06, 2024 3:24:53 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4008
+2024.05.06 15:25:21 INFO  compiling wsnsimmodelviascala (1 scala source)
+мая 06, 2024 3:25:22 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4086
+мая 06, 2024 3:25:26 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 4099
+2024.05.06 15:25:27 WARN  2 deprecations (since 2.13.3); re-run with -deprecation for details
+2024.05.06 15:25:27 INFO  time: compiled wsnsimmodelviascala in 5.31s
+2024.05.06 15:34:59 INFO  compiling wsnsimmodelviascala (1 scala source)
+2024.05.06 15:35:02 INFO  time: compiled wsnsimmodelviascala in 2.27s
+мая 06, 2024 3:39:15 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
