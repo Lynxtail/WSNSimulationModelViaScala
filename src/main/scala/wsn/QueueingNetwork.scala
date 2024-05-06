@@ -3,6 +3,7 @@ package wsn
 import scala.math.log
 import scala.util.Random
 import scala.util.control.Breaks
+import java.io._
 
 class QueueingNetwork(val tMax: Double,  val L: Int,
                       var lambda0: Double, var theta: Array[Array[Double]],
@@ -310,5 +311,15 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		println(s"Сеть перезапускалась ${countStates} раз")
 		println(s"tau = ${if (tauSummarized != 0) tauSummarized / countStates else tau}")
 		println(s"pLost = ${lostDemands.toDouble / totalDemands.toDouble}")
+		for (system <- systems){
+				var sum_p = 0.0
+				val pw = new PrintWriter(new File(s"${system.id.toString}.txt"))
+				for (state <- system.timeStates){
+					pw.println(s"p(n = ${system.timeStates.indexOf(state)}) = ${state / tMax}")
+					sum_p += state / tMax
+					}
+				pw.close()
+				println(s"Проверка оценки стационарного распределения системы ${system.id}: $sum_p")
+		}
 	}
 }
