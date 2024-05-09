@@ -10,6 +10,7 @@ class QueueingSystem(val id: Int, val serverCnt: Int,
 	var demands: ArrayBuffer[Demand] = ArrayBuffer[Demand]()
 	private var lastState: Double = 0
 	val timeStates: ArrayBuffer[Double] = ArrayBuffer[Double]()
+	val queueCapacity = 100000
 
 	def calculateServiceTime(): Double = {
 		val randomNumbers = List.fill(this.kMu)(scala.util.Random.nextDouble())

@@ -1,70 +1,92 @@
-val L: Double = 8.0
+val L: Int = 8
+val L_var: Double = L.toDouble
+
 val theta: Array[Array[Double]] = Array(
-	Array(0, 1 / L, 1 / L, 1 / L, 1 / L, 1 / L, 1 / L, 1 / L, 1 / L),
-	Array(.5, 0, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1))),
-	Array(.5, 1 / (2 * (L - 1)), 0, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1))),
-	Array(.5, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 0, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1))),
+	Array(0, 1 / L_var, 1 / L_var, 1 / L_var, 1 / L_var, 1 / L_var, 1 / L_var, 1 / L_var, 1 / L_var),
+	Array(.5, 0, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1))),
+	Array(.5, 1 / (2 * (L_var - 1)), 0, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1))),
+	Array(.5, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 0, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1))),
 	Array(1, 0, 0, 0, 0, 0, 0, 0, 0),
-	Array(.5, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 0, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1))),
-	Array(.5, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 0, 1 / (2 * (L - 1)), 1 / (2 * (L - 1))),
-	Array(.5, 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 1 / (2 * (L - 1)), 0, 1 / (2 * (L - 1))),
+	Array(.5, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 0, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1))),
+	Array(.5, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 0, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1))),
+	Array(.5, 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 1 / (2 * (L_var - 1)), 0, 1 / (2 * (L_var - 1))),
 	Array(1, 0, 0, 0, 0, 0, 0, 0, 0)
 )
 
-var thetaNormalized = new Matrix(theta)
 
-for (i <- 0 until thetaNormalized.getRowDimension;
-     j <- 0 until thetaNormalized.getColumnDimension) {
-	if (i == j) thetaNormalized.set(i, j, thetaNormalized.get(i, j) - 1)
-}
+def checkMatrix(theta: Array[Array[Double]]): Boolean = {
+	val excepted = scala.collection.mutable.ListBuffer[Int]()
 
-thetaNormalized
-
-var omega: Array[Double] = Array.fill[Double](L.toInt + 1)(1 / (L + 1))
-var oldOmega = Array.fill[Double](L.toInt + 1)(0)
-oldOmega(0) = 1
-var b = Array.fill[Double](L.toInt + 1)(0)
-val eps = 0.0000001
-
-var k = 1
-
-def calculateNorm(omega: Array[Double], oldOmega: Array[Double]): Double = {
-	var newOmega = new Array[Double](omega.length)
-	for (i <- newOmega.indices) {
-		newOmega(i) = omega(i) - oldOmega(i)
+	for (i <- 0 until theta.length) {
+		if (theta(i)(i) == 1) excepted.append(i)
 	}
-	newOmega.normF / oldOmega.normF
-}
 
-while (norm(omega - oldOmega) / norm(oldOmega) > eps && k <= 500) {
-	oldOmega = omega.clone()
-	for (j <- 0 to L) {
-		if (thetaNormalized(j)(j) != 0) {
-			omega(j) = (b(j) -
-			  (thetaNormalized.slice(0, j).map(_.zip(omega.slice(0, j)).map { case (a, b) => a * b }.sum) +
-				thetaNormalized.slice(j + 1, L + 1).map(_.zip(oldOmega.slice(j + 1, L + 1)).map { case (a, b) => a * b }.sum)) / thetaNormalized(j)(j)
-		} else {
-			omega(j) = 0
+	var visited = Array.ofDim[Boolean](L + 1)
+
+	def dfs(start: Int): Unit = {
+		for ((v, ind) <- theta(start).zipWithIndex) {
+			if (v > 0) {
+				visited(start) = true
+				if (!visited(ind)) {
+					// print(ind, end=' ')
+					dfs(ind)
+				}
+			}
 		}
 	}
-	k += 1
+
+	var ans : Boolean = true
+	for (i <- 0 until L + 1) {
+		if (!excepted.contains(i)) {
+			visited = Array.fill(L + 1)(false)
+			for (m <- excepted) {
+				visited(m) = true
+			}
+			if (!visited(i)) {
+				// print(f'\n\tдля {i}:', end=' ')
+				dfs(i)
+				// print()
+				if (!visited.forall(_ == true)) ans = false
+			}
+		}
+	}
+
+	if (visited.isEmpty){
+		ans = false
+	} else {
+		ans = visited.forall(_ == true)
+	}
+	ans
 }
 
+var b = Array.fill[Double](L)(1)
+b(1) = 0
 
-omega = omega.map(_ / omega.sum)
+def changeTheta(): Array[Array[Double]] = {
+	var oldTheta: Array[Array[Double]] = theta.map(_.clone)
+	val newTheta: Array[Array[Double]] = oldTheta.map(_.clone)
 
-/*
-old_omega = np.copy(omega)
-for j in range(L + 1):
-if theta[j][j] != 0:
-omega[j] = (b[j] -
-(sum([theta[i][j] * omega[i] for i in range(j)]) +
-sum([theta[i][j] * old_omega[i] for i in range(j + 1, L + 1)]))) / theta[j][j]
-else:
-omega[j] = 0
-k += 1
-omega = omega / np.sum(omega)
-*/
+	for (m <- b.indices) {
+		if (b(m) == 0) {
+			for (i <- 0 to L;
+			     k <- 0 to L) {
+				if (i != m + 1 && k != m + 1) {
+					if (oldTheta(i)(m + 1) != 1) {
+						newTheta(i)(k) = oldTheta(i)(k) / (1 - oldTheta(i)(m + 1))
+					}
+				} else if (k != m + 1) {
+					newTheta(m + 1)(k) = 0
+				} else if (i != m + 1) {
+					newTheta(i)(m + 1) = 0
+				}
+			}
+			newTheta(m + 1)(m + 1) = 1
+		}
+		oldTheta = newTheta.map(_.clone)
+	}
+	newTheta
+}
 
-println(s"k = $k\nOmega: ${omega.mkString(",")}\nCheck (~1): ${omega.sum}")
-omega
+checkMatrix(theta)
+val newTheta = changeTheta()
+checkMatrix(newTheta)
