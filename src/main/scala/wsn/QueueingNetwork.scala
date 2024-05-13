@@ -6,7 +6,7 @@ import scala.util.control.Breaks
 import java.io._
 import scala.collection.mutable.ArrayBuffer
 
-class QueueingNetwork(val tMax: Double,  val L: Int,
+class QueueingNetwork(val numOfSim: Int, val tMax: Double,  val L: Int,
                       var lambda0: Double, var theta: Array[Array[Double]],
                       var mu: Array[Double], var gamma: Array[Double],
                       val tauThreshold: Double) {
@@ -116,7 +116,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		}
 
 		omega = omega.map(_ / omega.sum)
-		println(s"k = $k\nOmega: ${omega.mkString(",")}\nCheck (~1): ${omega.sum}")
+		// println(s"k = $k\nOmega: ${omega.mkString(",")}\nCheck (~1): ${omega.sum}")
 		omega
 	}
 
@@ -207,7 +207,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				j += 1
 			}
 		}
-		 println(s"\tтребование ${demand.id} переходит из $i в $j")
+		 // println(s"\tтребование ${demand.id} переходит из $i в $j")
 
 		if (i != 0) {
 			systems(i).updateTimeStates(tNow)
@@ -225,12 +225,12 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		} else {
 			servicedDemands += 1
 			sumLifeTime += tNow - demand.arrival
-			println(s"\tтребование ${demand.id} покинуло сеть")
+			// println(s"\tтребование ${demand.id} покинуло сеть")
 		}
 	}
 
 	private def restore(): Unit = {
-		println(s"Сеть восстанавливается при \nb: ${b.mkString("(", ", ", ")")}")
+		// println(s"Сеть восстанавливается при \nb: ${b.mkString("(", ", ", ")")}")
 		b = Array.fill(L)(1)
 		theta = initialTheta.clone()
 		for (system <- systems.drop(1)) {
@@ -245,7 +245,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 	def simulation(): Unit = {
 		var demandId = 0
 		while (tNow < tMax) {
-			println(s"\n$tNow")
+			// println(s"\n$tNow")
 			// [println(s"${system.id}\n\t${system.deserializationTimeStates()}\n\t${system.demands.length}") for system <- systems]
 			indicator = false
 
@@ -256,7 +256,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				demandId += 1
 				val demand = Demand(demandId, tNow)
 				totalDemands += 1
-				println(s"\tтребование $demandId поступило в сеть")
+				// println(s"\tтребование $demandId поступило в сеть")
 				routing(0, demand)
 			}
 
@@ -266,18 +266,18 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 					indicator = true
 					systems(i).serviceFlag = true
 					tProcesses(i) = tNow + systems(i).calculateServiceTime
-					println(s"\tтребование ${systems(i).demands(0).id} начало обслуживаться в системе ${systems(i).id}")
+					// println(s"\tтребование ${systems(i).demands(0).id} начало обслуживаться в системе ${systems(i).id}")
 				}
 
-				if (systems(i).demands.length > 0 && tProcesses(i) >= tMax + 1){
-					println()
-				}
+				// if (systems(i).demands.length > 0 && tProcesses(i) >= tMax + 1){
+				// 	println()
+				// }
 
 				// завершение обслуживания
 				if (tProcesses(i) == tNow) {
 					indicator = true
 					systems(i).serviceFlag = false
-					println(s"\tтребование ${systems(i).demands(0).id} закончило обслуживаться в системе ${systems(i).id}")
+					// println(s"\tтребование ${systems(i).demands(0).id} закончило обслуживаться в системе ${systems(i).id}")
 					routing(i, systems(i).demands(0))
 					tau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
 					tProcesses(i) = tMax + 1
@@ -285,7 +285,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 
 				// выход из строя
 				if (systems(i).beDestroyedAt == tNow) {
-					println(s"\tСистема $i выходит из строя")
+					// println(s"\tСистема $i выходит из строя")
 					systems(i).state = false
 					systemCrushCounter(i - 1) += 1
 					lostDemands += systems(i).demands.length
@@ -299,10 +299,10 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 					// поиск омега
 					val omega = getOmegaIterationGaussSeidelMethod(L, theta)
 					if (!checkMatrix()) {
-						for (line <- theta) {
-							println(line.mkString("Array(", ", ", ")"))
-						}
-						println(checkMatrix())
+						// for (line <- theta) {
+						// 	println(line.mkString("Array(", ", ", ")"))
+						// }
+						// println(checkMatrix())
 						restore()
 					}
 					val currentTau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
@@ -314,7 +314,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 			}
 
 			if (tau > tauThreshold && !b.sameElements(Array.fill(L)(1))) {
-				println(s"\ttau = ${tau}, tau_ = ${tauThreshold}")
+				// println(s"\ttau = ${tau}, tau_ = ${tauThreshold}")
 				restore()
 				val currentTau = if (servicedDemands != 0) sumLifeTime / servicedDemands else 0
 				tauSummarized += currentTau
@@ -327,7 +327,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				// статистика
 				for (system <- systems) {
 					system.updateTimeStates(tNow)
-					println(s"\t${system.id} — ${system.demands.length} требований")
+					// println(s"\t${system.id} — ${system.demands.length} требований")
 					totalDemands
 				}
 				tOld = tNow
@@ -338,6 +338,8 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		for (system <- systems){
 			lostDemands += system.demands.length
 		}
+
+
 
 		println(s"\nВсего требований: $totalDemands\nОбслужено ${totalDemands - lostDemands}, потеряно $lostDemands")
 		println(s"Сеть имела ${countStates} состояний")
@@ -365,5 +367,15 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		println(s"Среднее число требований в системах сети: ${n.mkString("(", ", ", ")")}")
 		println(s"Среднее число требований в сети: ${n.sum}")
 		println(s"Пропускная способность сети: ${(totalDemands - lostDemands) / tMax}")
+
+		val dir = new File(s"$lambda0").mkdir()
+		val pw = new PrintWriter(new File(s"$lambda0/$numOfSim.txt"))
+		pw.println(s"($totalDemands, ${totalDemands - lostDemands}, $lostDemands)")
+		pw.println(if (tauSummarized != 0) tauSummarized / countStates else tau)
+		pw.println(s"${n.mkString("(", ", ", ")")}")
+		pw.println(n.sum)
+		pw.println((totalDemands - lostDemands) / tMax)
+		pw.close()
+
 	}
 }
