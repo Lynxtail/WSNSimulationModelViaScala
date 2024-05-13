@@ -2,15 +2,15 @@
     "version": "1.4.0",
     "project": {
         "name": "wsnsimmodelviascala-build",
-        "directory": "/home/lynxtail/Scripts/wsnsimmodelviascala/project",
-        "workspaceDir": "/home/lynxtail/Scripts/wsnsimmodelviascala/project",
+        "directory": "/home/lynxtail/Scripts/WSNSimModelViaScala/project",
+        "workspaceDir": "/home/lynxtail/Scripts/WSNSimModelViaScala/project",
         "sources": [
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/src/main/scala",
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/src/main/scala-2.12",
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/src/main/scala-2",
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/src/main/java",
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/src/main/scala-sbt-1.0",
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/target/scala-2.12/sbt-1.0/src_managed/main"
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/src/main/scala",
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/src/main/scala-2.12",
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/src/main/scala-2",
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/src/main/java",
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/src/main/scala-sbt-1.0",
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/target/scala-2.12/sbt-1.0/src_managed/main"
         ],
         "dependencies": [
             
@@ -104,11 +104,11 @@
             "/home/lynxtail/.cache/coursier/v1/https/repo1.maven.org/maven2/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar",
             "/home/lynxtail/.cache/coursier/v1/https/repo1.maven.org/maven2/com/typesafe/config/1.4.2/config-1.4.2.jar"
         ],
-        "out": "/home/lynxtail/Scripts/wsnsimmodelviascala/project/.bloop/wsnsimmodelviascala-build",
-        "classesDir": "/home/lynxtail/Scripts/wsnsimmodelviascala/project/.bloop/wsnsimmodelviascala-build/scala-2.12/sbt-1.0/classes",
+        "out": "/home/lynxtail/Scripts/WSNSimModelViaScala/project/.bloop/wsnsimmodelviascala-build",
+        "classesDir": "/home/lynxtail/Scripts/WSNSimModelViaScala/project/.bloop/wsnsimmodelviascala-build/scala-2.12/sbt-1.0/classes",
         "resources": [
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/src/main/resources",
-            "/home/lynxtail/Scripts/wsnsimmodelviascala/project/target/scala-2.12/sbt-1.0/resource_managed/main"
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/src/main/resources",
+            "/home/lynxtail/Scripts/WSNSimModelViaScala/project/target/scala-2.12/sbt-1.0/resource_managed/main"
         ],
         "scala": {
             "organization": "org.scala-lang",
@@ -215,7 +215,7 @@
             "config": {
                 "home": "/usr/lib/jvm/jdk-21-oracle-x64",
                 "options": [
-                    "-Duser.dir=/home/lynxtail/Scripts/wsnsimmodelviascala/project"
+                    "-Duser.dir=/home/lynxtail/Scripts/WSNSimModelViaScala/project"
                 ]
             },
             "mainClass": [
@@ -224,11 +224,11 @@
             "runtimeConfig": {
                 "home": "/usr/lib/jvm/jdk-21-oracle-x64",
                 "options": [
-                    "-Duser.dir=/home/lynxtail/Scripts/wsnsimmodelviascala/project"
+                    "-Duser.dir=/home/lynxtail/Scripts/WSNSimModelViaScala/project"
                 ]
             },
             "classpath": [
-                "/home/lynxtail/Scripts/wsnsimmodelviascala/project/.bloop/wsnsimmodelviascala-build/scala-2.12/sbt-1.0/classes",
+                "/home/lynxtail/Scripts/WSNSimModelViaScala/project/.bloop/wsnsimmodelviascala-build/scala-2.12/sbt-1.0/classes",
                 "/home/lynxtail/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/sbt-bloop_2.12_1.0/1.5.17/sbt-bloop_2.12_1.0-1.5.17.jar",
                 "/home/lynxtail/.cache/coursier/v1/https/repo1.maven.org/maven2/ch/epfl/scala/bloop-config_2.12/1.5.5/bloop-config_2.12-1.5.5.jar",
                 "/home/lynxtail/.cache/coursier/v1/https/repo1.maven.org/maven2/com/github/plokhotnyuk/jsoniter-scala/jsoniter-scala-core_2.12/2.4.0/jsoniter-scala-core_2.12-2.4.0.jar",

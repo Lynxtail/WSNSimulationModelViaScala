@@ -1,0 +1,21 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/hello-world_2.13-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/QueueingSystem$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/QueueingSystem$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/Demand$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/Demand$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/Demand.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/Demand.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/QueueingNetwork.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/QueueingNetwork.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	wsn/QueueingSystem.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/lynxtail/Scripts/WSNSimModelViaScala/target/scala-2.13/classes/wsn/QueueingSystem.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
