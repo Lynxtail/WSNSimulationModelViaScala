@@ -76,7 +76,7 @@ object Main extends App {
 //	val tMax = math.pow(10, 1)
 
 	for (lambda0Current <- lambda0;
-		 i <- 0 until 10){
+		 i <- 0 until 30){
 
 		val nw: QueueingNetwork = new QueueingNetwork(i, tMax, L, lambda0Current, theta, mu, gamma, tauThreshold)
 		nw.simulation()
