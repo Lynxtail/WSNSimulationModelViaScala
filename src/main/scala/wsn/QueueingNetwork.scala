@@ -4,6 +4,7 @@ import scala.math.log
 import scala.util.Random
 import scala.util.control.Breaks
 import java.io._
+import scala.collection.mutable.ArrayBuffer
 
 class QueueingNetwork(val tMax: Double,  val L: Int,
                       var lambda0: Double, var theta: Array[Array[Double]],
@@ -26,8 +27,10 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 	private var totalDemands: Int = 0
 	private var sumLifeTime: Double = 0
 	private var b: Array[Int] = Array.fill(L)(1)
-	private var countStates: Int = 0
+	private var countStates: Int = 1
 	private var tauSummarized: Double = 0
+	private var systemCrushCounter: Array[Int] = Array.fill(L)(0)
+	private var networkRestorationCounter: Int = 0
 
 	private var tau: Double = 0
 
@@ -204,7 +207,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				j += 1
 			}
 		}
-		// println(s'\tтребование ${demand.id} переходит из $i в $j')
+		 println(s"\tтребование ${demand.id} переходит из $i в $j")
 
 		if (i != 0) {
 			systems(i).updateTimeStates(tNow)
@@ -232,8 +235,11 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		theta = initialTheta.clone()
 		for (system <- systems.drop(1)) {
 			// println(system.gamma)
+			system.state = true
+			system.serviceFlag = false
 			system.beDestroyedAt = tNow + system.calculateDestroyTime
 		}
+		networkRestorationCounter += 1
 	}
 
 	def simulation(): Unit = {
@@ -263,6 +269,10 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 					println(s"\tтребование ${systems(i).demands(0).id} начало обслуживаться в системе ${systems(i).id}")
 				}
 
+				if (systems(i).demands.length > 0 && tProcesses(i) >= tMax + 1){
+					println()
+				}
+
 				// завершение обслуживания
 				if (tProcesses(i) == tNow) {
 					indicator = true
@@ -277,6 +287,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				if (systems(i).beDestroyedAt == tNow) {
 					println(s"\tСистема $i выходит из строя")
 					systems(i).state = false
+					systemCrushCounter(i - 1) += 1
 					lostDemands += systems(i).demands.length
 					// println(systems(i).currentDemands())
 					systems(i).demands.clearAndShrink(0)
@@ -317,6 +328,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 				for (system <- systems) {
 					system.updateTimeStates(tNow)
 					println(s"\t${system.id} — ${system.demands.length} требований")
+					totalDemands
 				}
 				tOld = tNow
 				tNow = (tProcesses :++ systems.tail.map(_.beDestroyedAt).toArray).min
@@ -328,7 +340,10 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 		}
 
 		println(s"\nВсего требований: $totalDemands\nОбслужено ${totalDemands - lostDemands}, потеряно $lostDemands")
-		println(s"Сеть перезапускалась ${countStates} раз")
+		println(s"Сеть имела ${countStates} состояний")
+		println(s"Последнее состояние сети ${b.mkString("(", ", ", ")")}")
+		println(s"Сеть перезапускалась ${networkRestorationCounter} раз")
+		println(s"Системы выходили из строя ${systemCrushCounter.mkString("(", ", ", ")")} раз")
 		println(s"tau = ${if (tauSummarized != 0) tauSummarized / countStates else tau}")
 		println(s"pLost = ${lostDemands.toDouble / totalDemands.toDouble}")
 		var n = new Array[Double](L)
@@ -348,6 +363,7 @@ class QueueingNetwork(val tMax: Double,  val L: Int,
 			println(s"Проверка оценки стационарного распределения системы ${system.id}: $sum_p")
 		}
 		println(s"Среднее число требований в системах сети: ${n.mkString("(", ", ", ")")}")
+		println(s"Среднее число требований в сети: ${n.sum}")
 		println(s"Пропускная способность сети: ${(totalDemands - lostDemands) / tMax}")
 	}
 }
