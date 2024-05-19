@@ -3,7 +3,8 @@ import os
 import os.path
 import matplotlib.pyplot as plt
 
-# os.system('sbt ~run')
+os.system('sbt ~run')
+
 
 excluded = ('.bloop', '.bsp', '.metals', '.vscode', 'project', 'src', 'target', '.git')
 lambdas = []
@@ -37,7 +38,7 @@ for i in range(len(lambdas)):
             counter += 1
         except Exception:
             print(f'{round(lambdas[i], 3)} — {value} — error')
-print(f'Total: {counter}/60\n')
+print(f'Total: {counter}/{len(lambdas) * len(values[-1])}\n')
 
 
 mean_demands = []
@@ -70,10 +71,10 @@ print(f'Lambda: {np.mean(mean_Lambda)}')
 
 lambda_0 = np.array((96.15385, 192.30769, 288.46154, 384.61538, 480.76923, 576.92308))
 lambda_0_for_classic_network = np.array((96.15385, 192.30769, 288.46154, 384.61538, 480.76923, 576.92308))
-tau_for_plot = np.array((0.0021,  0.00223, 0.00238, 0.00256, 0.00278, 0.00309))
-tau_for_classic_network = np.array((0.00228, 0.00236, 0.00245, 0.00254, 0.00264, 0.00275))
-n_for_plot = np.array((0.20186, 0.4281,  0.68532, 0.98351, 1.3389,  1.78088))
-n_for_classic_network = np.array((0.21947, 0.454,   0.70548, 0.97618, 1.26886, 1.58694))
+tau_for_plot = np.array((0.00186, 0.00198, 0.00211, 0.00227, 0.00248, 0.00275))
+tau_for_classic_network = np.array((0.00201, 0.00207, 0.00214, 0.00221, 0.00229, 0.00238))
+n_for_plot = np.array((0.1792 , 0.37989, 0.60809, 0.87305, 1.19005, 1.58725))
+n_for_classic_network = np.array((0.19316, 0.39849, 0.61739, 0.85155, 1.10294, 1.37396))
 
 dx = max(abs(mean_tau - tau_for_plot))
 i_dx = abs(mean_tau - tau_for_plot).argmax()
@@ -89,14 +90,17 @@ print(f'Максимальная погрешность sum n_i: {dx / x * 100}%
 mean_tau = np.array(np.repeat(mean_tau, plot_multiplier))
 mean_n = np.array(np.repeat(mean_n, plot_multiplier))
 
+plt.rcParams.update({'font.size' : 8})
+
 plt.figure(1)
 plt.scatter(lambdas, tau, c='g')
 plt.plot(lambdas, mean_tau, '-o', c='g', label='ИМ - ненадёжная сеть')
 plt.grid(True)
 # plt.plot(lambda_0_for_classic_network, tau_for_classic_network, '-o',  c='b', label='АМ - надёжная сеть')
 plt.plot(lambda_0, tau_for_plot, '-o', c='r', label='АМ - ненадёжная сеть')
+plt.ticklabel_format(axis='y', scilimits=[0, 0])
 plt.legend()
-plt.title(f'Зависимость м.о. времени реакции сети\nот интенсивности входящего потока\nпри пороге ' + r"$\tau'_0$" + f'= 1')
+plt.title(f'Зависимость оценки времени реакции сети\nот интенсивности входящего потока\nпри пороге ' + r"$\tau'_0$" + f'= 1')
 plt.xlabel(r'$\lambda_0$, пакетов в секунду')
 plt.ylabel(r'$\tau$, секунд')
 plt.savefig('IM_AM_fig_tau.png', format='png', dpi=1000.)
@@ -109,7 +113,7 @@ plt.grid(True)
 # plt.plot(lambda_0_for_classic_network, n_for_classic_network, '-o',  c='b', label='АМ - надёжная сеть')
 plt.plot(lambda_0, n_for_plot, '-o', c='r', label='АМ - ненадёжная сеть')
 plt.legend()
-plt.title(f'Зависимость м.о. числа требований в сети\nот интенсивности входящего потока\nпри пороге ' + r"$\tau'_0$" + f'= 1')
+plt.title(f'Зависимость оценки среднего числа требований в сети\nот интенсивности входящего потока\nпри пороге ' + r"$\tau'_0$" + f'= 1')
 plt.xlabel(r'$\lambda_0$, пакетов в секунду')
 plt.ylabel(r'$\sum_i n_i$, пакетов')
 plt.savefig('IM_AM_fig_n.png', format='png', dpi=1000.)
@@ -121,10 +125,11 @@ plt.figure(3)
 plt.grid(True)
 plt.plot(lambda_0_for_classic_network, tau_for_classic_network, '-o',  c='b', label='АМ - надёжная сеть')
 plt.plot(lambda_0, tau_for_plot, '-o', c='r', label='АМ - ненадёжная сеть')
+plt.ticklabel_format(axis='y', scilimits=[0, 0])
 plt.legend()
 plt.title(f'Зависимость м.о. времени реакции сети\nот интенсивности входящего потока\nпри пороге ' + r"$\tau'_0$" + f'= 1')
 plt.xlabel(r'$\lambda_0$, пакетов в секунду')
-plt.ylabel(r'$\tau$, секунд')
+plt.ylabel(r'$\tau_0$, секунд')
 plt.savefig('AM_fig_tau.png', format='png', dpi=1000.)
 plt.savefig('AM_fig_tau.svg', format='svg', dpi=1000.)
 
